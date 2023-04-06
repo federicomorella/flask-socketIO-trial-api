@@ -1,0 +1,13 @@
+flask
+flask-smorest
+python-dotenv
+SQLAlchemy
+Flask-SQLAlchemy
+flask_jwt_extended
+flask_cors
+passlib
+Flask-Migrate
+gunicorn
+psycopg2-binary
+eventlet
+flask-socketio

@@ -1,0 +1,146 @@
+_type: export
+__export_format: 4
+__export_date: 2023-04-06T18:10:05.843Z
+__export_source: insomnia.desktop.app:v2022.7.5
+resources:
+  - _id: req_0960a45a6c684233b3fd8d7f689c0df7
+    parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    modified: 1680804530098
+    created: 1679692705601
+    url: "{{ _.url }}/login"
+    name: login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"fede",
+        	"password":"1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1679692705601
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1680804517604
+    created: 1679692703149
+    name: users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1679692703149
+    _type: request_group
+  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
+    parentId: null
+    modified: 1679692678208
+    created: 1679692678208
+    name: TravelAgent.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_5b70ab2c0e20462ea35b3f391a76f208
+    parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    modified: 1680804550737
+    created: 1679692707460
+    url: "{{ _.url }}/signup"
+    name: register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"fede",
+        	"password":"1234",
+        	"email":"fede@pp.com"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1679692705551
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b307ca6d62fc4296892f9163d9885f98
+    parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    modified: 1680804560153
+    created: 1679955506159
+    url: "{{ _.url }}/user"
+    name: update current agent
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"pirulo",
+        	"password":"1234",
+        	"instagram":null
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1679692705451
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_a0f27c55600424c54b154df89292bef034ad3178
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1680802243519
+    created: 1679692678211
+    name: Base Environment
+    data:
+      url: http://127.0.0.1:5000/v1
+      access_token: "{% response 'body', 'req_0960a45a6c684233b3fd8d7f689c0df7',
+        'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - url
+        - access_token
+    color: null
+    isPrivate: false
+    metaSortKey: 1679692678211
+    _type: environment
+  - _id: jar_a0f27c55600424c54b154df89292bef034ad3178
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1679692678213
+    created: 1679692678213
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_532742db41124d7593548daffc2a66a6
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1679692678208
+    created: 1679692678208
+    fileName: TravelAgent.yaml
+    contents: ""
+    contentType: yaml
+    _type: api_spec
