@@ -3,7 +3,7 @@ from marshmallow import Schema,fields
 class UserSchema(Schema):
     '''{email,password,name,instagram}'''    
     username=fields.String()
-    password=fields.String()
+    password=fields.String(load_only=True)
     email=fields.String()
     
 class UserLoginSchema(Schema):

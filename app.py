@@ -12,7 +12,7 @@ from resources.users import blp as UserBlp
 
 from dotenv import load_dotenv
 
-from flask_socketio import SocketIO
+from ws.ws import socketIO_init
 
 def create_app(db_url=None):
 
@@ -39,7 +39,8 @@ def create_app(db_url=None):
 
     #SocketIO
     app.config['SECRET_KEY'] = os.getenv("SECRET",'my_secret_key')
-    socketio = SocketIO(app)
+    # Initialize socketIO events inside ws.py
+    socketIO_init(app)
 
     db.init_app(app) #inicializa la conexión con la base de datos
 

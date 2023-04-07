@@ -57,6 +57,11 @@ class UserRegister(MethodView):
 class AgentList(MethodView):   
     
     @jwt_required()
+    @blp.response(200,UserSchema)
+    def get(self):
+        return db.get_or_404(UserModel,get_jwt().get("sub"))
+    
+    @jwt_required()
     @blp.arguments(UserSchema)
     def put(self,user_data):
         '''modify current user data'''
