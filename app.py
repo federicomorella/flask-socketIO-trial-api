@@ -1,5 +1,5 @@
 import os #lo uso para levantar las variables de entrono
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template
 from flask_smorest import Api
 
 from flask_jwt_extended import JWTManager
@@ -17,7 +17,9 @@ from ws.ws import socketIO_init
 def create_app(db_url=None):
 
     load_dotenv()
-    app=Flask(__name__)
+    app=Flask(__name__,
+            static_url_path='', 
+            static_folder='static')
     
     CORS(app)
     app.config["PROPAGATE_EXCEPTIONS"]=True
@@ -45,6 +47,7 @@ def create_app(db_url=None):
     db.init_app(app) #inicializa la conexión con la base de datos
 
     migrate=Migrate(app,db)
+    
 
     api=Api(app)
     
