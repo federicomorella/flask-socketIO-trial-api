@@ -1,10 +1,13 @@
 import os #lo uso para levantar las variables de entrono
+
 from flask import Flask,request,jsonify,render_template
 from flask_smorest import Api
 
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_cors import CORS
+
+from flask_socketio import SocketIO
 
 from db import db
 from models import * #importo los modelos para que los use sqlalchemy
@@ -41,8 +44,10 @@ def create_app(db_url=None):
 
     #SocketIO
     app.config['SECRET_KEY'] = os.getenv("SECRET",'my_secret_key')
-    # Initialize socketIO events inside ws.py
-    socketIO_init(app)
+    
+#     # Initialize socketIO events inside ws.py
+#     socketio=socketIO_init(app)
+
 
     db.init_app(app) #inicializa la conexión con la base de datos
 
@@ -54,3 +59,9 @@ def create_app(db_url=None):
     API_PREFIX='/v1'
     api.register_blueprint(UserBlp,url_prefix=API_PREFIX)
     return app
+
+if __name__ == '__main__':
+        app=create_app()
+        socketio=socketIO_init(app)
+        socketio.run(app)
+

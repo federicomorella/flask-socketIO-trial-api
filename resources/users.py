@@ -81,4 +81,4 @@ class AgentList(MethodView):
         except SQLAlchemyError:
             abort(500,message="Failed to update user information")
         else:
-            return {"message": "User updated"},201
+            return {"message": "User updated"},200

@@ -1,11 +1,50 @@
 _type: export
 __export_format: 4
-__export_date: 2023-04-06T18:10:05.843Z
+__export_date: 2023-04-09T19:05:32.410Z
 __export_source: insomnia.desktop.app:v2022.7.5
 resources:
+  - _id: req_c7c0b7bc9ffd4ce1a46d2ce1f290b722
+    parentId: fld_b3c4a26a230e4cc28829bf5181e758b9
+    modified: 1680806461153
+    created: 1680806231398
+    url: http://localhost:5000/socket.io
+    name: connect
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1680249465151
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b3c4a26a230e4cc28829bf5181e758b9
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1680806227153
+    created: 1680806227153
+    name: websocket
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1680806227153
+    _type: request_group
+  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
+    parentId: null
+    modified: 1679692678208
+    created: 1679692678208
+    name: TravelAgent.yaml
+    description: ""
+    scope: design
+    _type: workspace
   - _id: req_0960a45a6c684233b3fd8d7f689c0df7
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1680804530098
+    modified: 1680876877434
     created: 1679692705601
     url: "{{ _.url }}/login"
     name: login
@@ -15,7 +54,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"username":"fede",
+        	"username":"jesi",
         	"password":"1234"
         }
     parameters: []
@@ -42,17 +81,32 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1679692703149
     _type: request_group
-  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
-    parentId: null
-    modified: 1679692678208
-    created: 1679692678208
-    name: TravelAgent.yaml
+  - _id: req_1d2fef0fbb564f84919edff765b03356
+    parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    modified: 1680821029911
+    created: 1680820970832
+    url: "{{ _.url }}/user"
+    name: get logged user information
     description: ""
-    scope: design
-    _type: workspace
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1679692705576
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_5b70ab2c0e20462ea35b3f391a76f208
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1680804550737
+    modified: 1680876764528
     created: 1679692707460
     url: "{{ _.url }}/signup"
     name: register
@@ -82,7 +136,7 @@ resources:
     _type: request
   - _id: req_b307ca6d62fc4296892f9163d9885f98
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1680804560153
+    modified: 1681067090747
     created: 1679955506159
     url: "{{ _.url }}/user"
     name: update current agent
@@ -94,7 +148,7 @@ resources:
         {
         	"name":"pirulo",
         	"password":"1234",
-        	"instagram":null
+        	"email":null
         }
     parameters: []
     headers:
@@ -114,11 +168,11 @@ resources:
     _type: request
   - _id: env_a0f27c55600424c54b154df89292bef034ad3178
     parentId: wrk_50dcf68163ff488fba1b019beef3d74c
-    modified: 1680802243519
+    modified: 1680876747881
     created: 1679692678211
     name: Base Environment
     data:
-      url: http://127.0.0.1:5000/v1
+      url: https://flask-socketio.onrender.com/v1
       access_token: "{% response 'body', 'req_0960a45a6c684233b3fd8d7f689c0df7',
         'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
     dataPropertyOrder:
