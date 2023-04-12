@@ -22,11 +22,12 @@ def create_app(db_url=None):
     load_dotenv()
     app=Flask(__name__,
             static_url_path='', 
-            static_folder='static')
+            static_folder='static',
+            template_folder='static')
     
     CORS(app)
     app.config["PROPAGATE_EXCEPTIONS"]=True
-    app.config["API_TITLE"]="Travel's Agents API"
+    app.config["API_TITLE"]="Flask-SocketIO API"
     app.config["API_VERSION"]="v1"
     app.config["OPENAPI_VERSION"]="3.0.3"
     app.config["OPENAPI_URL_PREFIX"]="/"
@@ -58,6 +59,13 @@ def create_app(db_url=None):
     
     API_PREFIX='/v1'
     api.register_blueprint(UserBlp,url_prefix=API_PREFIX)
+    
+    #Render home page
+    @app.route('/')
+    def home():
+        '''Render index.html at "/"'''
+        return render_template('index.html')
+    
     return app
 
 if __name__ == '__main__':

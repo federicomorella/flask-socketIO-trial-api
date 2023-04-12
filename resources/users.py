@@ -59,6 +59,7 @@ class AgentList(MethodView):
     @jwt_required()
     @blp.response(200,UserSchema)
     def get(self):
+        '''gets current user information'''
         return db.get_or_404(UserModel,get_jwt().get("sub"))
     
     @jwt_required()
