@@ -7,7 +7,6 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_cors import CORS
 
-from flask_socketio import SocketIO
 
 from db import db
 from models import * #importo los modelos para que los use sqlalchemy
@@ -26,6 +25,7 @@ def create_app(db_url=None):
             template_folder='static')
     
     CORS(app)
+    app.config['SQLALCHEMY_ECHO'] = True #log sqlalchemy queries
     app.config["PROPAGATE_EXCEPTIONS"]=True
     app.config["API_TITLE"]="Flask-SocketIO API"
     app.config["API_VERSION"]="v1"
@@ -51,7 +51,7 @@ def create_app(db_url=None):
 
 
     db.init_app(app) #inicializa la conexión con la base de datos
-
+    
     migrate=Migrate(app,db)
     
 

@@ -5,11 +5,11 @@ from flask_jwt_extended import create_access_token,jwt_required, \
     get_jwt, get_jwt_identity
 
 from db import db
-from sqlalchemy import select 
+from sqlalchemy import select ,delete
 from sqlalchemy.sql import or_
 from sqlalchemy.exc import SQLAlchemyError,IntegrityError
 from models import UserModel
-from schemas import UserLoginSchema,UserSchema
+from schemas import UserLoginSchema,UserSchema,ContactSchema
 
 blp=Blueprint("users",__name__,description="operations on users")
 
@@ -54,7 +54,7 @@ class UserRegister(MethodView):
 
 
 @blp.route('/user')
-class AgentList(MethodView):   
+class UserList(MethodView):   
     
     @jwt_required()
     @blp.response(200,UserSchema)
@@ -83,3 +83,41 @@ class AgentList(MethodView):
             abort(500,message="Failed to update user information")
         else:
             return {"message": "User updated"},200
+        
+    @jwt_required()
+    def delete(self):
+        '''delete current user'''
+        UserModel.query.filter_by(id=get_jwt().get("sub")).delete()
+        db.session.commit()
+        return {"message": "User deleted"},200
+        
+
+
+@blp.route('/user/contact')
+class ContactList(MethodView):
+    
+    @jwt_required()
+    @blp.arguments(ContactSchema)
+    def post(self,contact_data:ContactSchema):
+        '''Add contact to current user'''
+        user:UserModel=db.get_or_404(UserModel,get_jwt().get("sub"))
+        try:
+            contact=UserModel.query.filter(UserModel.username==contact_data.get('username')).first_or_404()
+            user.follow(contact)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500,message='Failed to add contact') 
+        return {"message":"contact added"},200
+    
+    @jwt_required()
+    @blp.arguments(ContactSchema)
+    def delete(self,contact_data:ContactSchema):
+        '''remove contact form current user'''
+        user:UserModel=db.get_or_404(UserModel,get_jwt().get("sub"))
+        try:
+            contact=UserModel.query.filter(UserModel.username==contact_data.get('username')).first_or_404()
+            user.unfollow(contact)
+            db.session.commit()
+        except SQLAlchemyError as err:
+            abort(500,message=err) 
+        return {"message":"contact removed"},200
