@@ -20,13 +20,16 @@ class UserModel(db.Model):
     username=Column(types.String(80),nullable=False,unique=True)
     password=Column(types.String(129),nullable=False)    
     email=Column(types.String,unique=True)
+    rooms:list
+
     
-    contacts:list = relationship('UserModel', 
+    contacts = relationship('UserModel', 
         secondary = 'user_contact', 
         primaryjoin = id==User_Contact.user_id, 
         secondaryjoin = id==User_Contact.contact_id,
         backref='followers',
         lazy = 'dynamic')
+    
     
     
     def follow(self, user):

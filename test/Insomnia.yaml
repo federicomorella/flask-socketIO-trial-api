@@ -1,8 +1,172 @@
 _type: export
 __export_format: 4
-__export_date: 2023-04-09T19:05:32.410Z
+__export_date: 2023-04-24T22:30:17.565Z
 __export_source: insomnia.desktop.app:v2022.7.5
 resources:
+  - _id: req_37074ed18e3c42c481666f036891792e
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682375388427
+    created: 1682375354246
+    url: "{{ _.url }}/rooms/1"
+    name: get room data by id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682375354246
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_6d7368eabe594937ab6148818b85db1d
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1682369367631
+    created: 1682369367631
+    name: Rooms
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1682369367631
+    _type: request_group
+  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
+    parentId: null
+    modified: 1679692678208
+    created: 1679692678208
+    name: TravelAgent.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_ffcdeb0031d44fbe8761685a8677ab79
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682372837188
+    created: 1682370925973
+    url: "{{ _.url }}/rooms"
+    name: get rooms of current user
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682370925973
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a835f5e1aa214623b188e4866007b04c
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682373392108
+    created: 1682369368825
+    url: "{{ _.url }}/rooms"
+    name: New room
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name":"sala 2"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682369368825
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fe401d5b037f4c27982e63c7ac838ed6
+    parentId: fld_9ce2f8379c8244e0916c190da675c639
+    modified: 1682368604838
+    created: 1681926948386
+    url: "{{ _.url }}/user/contacts"
+    name: New Request
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"pepe"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1681926948386
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_9ce2f8379c8244e0916c190da675c639
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1681858076949
+    created: 1681858076949
+    name: contact
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1681858076950
+    _type: request_group
+  - _id: req_ef4868be43284e1287ff3da43103088c
+    parentId: fld_9ce2f8379c8244e0916c190da675c639
+    modified: 1682368595379
+    created: 1681858084669
+    url: "{{ _.url }}/user/contacts"
+    name: add contact
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"jesi"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1681858084669
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_c7c0b7bc9ffd4ce1a46d2ce1f290b722
     parentId: fld_b3c4a26a230e4cc28829bf5181e758b9
     modified: 1680806461153
@@ -34,35 +198,21 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1680806227153
     _type: request_group
-  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
-    parentId: null
-    modified: 1679692678208
-    created: 1679692678208
-    name: TravelAgent.yaml
-    description: ""
-    scope: design
-    _type: workspace
-  - _id: req_0960a45a6c684233b3fd8d7f689c0df7
+  - _id: req_06bb1e62d98940a2841130d3c331a5c3
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1680876877434
-    created: 1679692705601
-    url: "{{ _.url }}/login"
-    name: login
+    modified: 1681929054636
+    created: 1681929010030
+    url: "{{ _.url }}/user"
+    name: delete current user
     description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"username":"jesi",
-        	"password":"1234"
-        }
+    method: DELETE
+    body: {}
     parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-    authentication: {}
-    metaSortKey: -1679692705601
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1681929010030
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -81,6 +231,35 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1679692703149
     _type: request_group
+  - _id: req_0960a45a6c684233b3fd8d7f689c0df7
+    parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
+    modified: 1682372854381
+    created: 1679692705601
+    url: "{{ _.url }}/login"
+    name: login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"fede",
+        	"password":"1234"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1679692705601
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_1d2fef0fbb564f84919edff765b03356
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
     modified: 1680821029911
@@ -106,7 +285,7 @@ resources:
     _type: request
   - _id: req_5b70ab2c0e20462ea35b3f391a76f208
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1680876764528
+    modified: 1682369247215
     created: 1679692707460
     url: "{{ _.url }}/signup"
     name: register
@@ -116,9 +295,9 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"username":"fede",
+        	"username":"pp",
         	"password":"1234",
-        	"email":"fede@pp.com"
+        	"email":"pp@pp.com"
         }
     parameters: []
     headers:
@@ -168,11 +347,11 @@ resources:
     _type: request
   - _id: env_a0f27c55600424c54b154df89292bef034ad3178
     parentId: wrk_50dcf68163ff488fba1b019beef3d74c
-    modified: 1680876747881
+    modified: 1681068627362
     created: 1679692678211
     name: Base Environment
     data:
-      url: https://flask-socketio.onrender.com/v1
+      url: localhost:5000/v1
       access_token: "{% response 'body', 'req_0960a45a6c684233b3fd8d7f689c0df7',
         'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 60 %}"
     dataPropertyOrder:

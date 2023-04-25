@@ -18,13 +18,12 @@ class UserLogin(MethodView):
     @blp.arguments(UserLoginSchema)
     def post(self,user_data):
         '''login user using username and password'''
-        user:UserModel=db.session.query(UserModel).filter(UserModel.username==user_data["username"]).first()
+        user=db.session.query(UserModel).filter(UserModel.username==user_data["username"]).first()
         if user and pbkdf2_sha256.verify(user_data["password"],user.password):
             access_token=create_access_token(identity=user.id,fresh=True)
             return {"access_token":access_token}
         else:
             abort(401,message="invalid credentials.")
-        
 
 
 @blp.route('/signup')
@@ -67,8 +66,7 @@ class UserList(MethodView):
     def put(self,user_data):
         '''modify current user data'''
         #obtain user id from jwt subject
-        user:UserModel=db.get_or_404(UserModel,get_jwt().get("sub"))
-        
+        user=db.get_or_404(UserModel,get_jwt().get("sub"))
         #update fields
         user.email=user_data.get('email') or user.email
         
@@ -93,14 +91,14 @@ class UserList(MethodView):
         
 
 
-@blp.route('/user/contact')
+@blp.route('/user/contacts')
 class ContactList(MethodView):
     
     @jwt_required()
     @blp.arguments(ContactSchema)
-    def post(self,contact_data:ContactSchema):
+    def post(self,contact_data):
         '''Add contact to current user'''
-        user:UserModel=db.get_or_404(UserModel,get_jwt().get("sub"))
+        user=db.get_or_404(UserModel,get_jwt().get("sub"))
         try:
             contact=UserModel.query.filter(UserModel.username==contact_data.get('username')).first_or_404()
             user.follow(contact)
@@ -111,7 +109,7 @@ class ContactList(MethodView):
     
     @jwt_required()
     @blp.arguments(ContactSchema)
-    def delete(self,contact_data:ContactSchema):
+    def delete(self,contact_data):
         '''remove contact form current user'''
         user:UserModel=db.get_or_404(UserModel,get_jwt().get("sub"))
         try:
