@@ -1,5 +1,6 @@
 from marshmallow import Schema,fields
 
+
 class PlainUserSchema(Schema):
     '''{username,email}'''    
     username=fields.String()
@@ -13,6 +14,20 @@ class PlainRoomSchema(Schema):
 class RoomSchema(PlainRoomSchema):
     '''{id,name,users}'''
     users=fields.List(fields.Nested(PlainUserSchema))
+    
+    
+class NewMessageSchema(Schema):
+    '''{message}'''
+    message=fields.String(required=True)
+    
+class MessageSchema(Schema):
+    '''{id,room_id,username,message,datetime}'''
+    id=fields.Integer()
+    room_id=fields.Integer()
+    username=fields.String()
+    message=fields.String()
+    datetime=fields.DateTime()
+      
     
     
 class UserSchema(Schema):

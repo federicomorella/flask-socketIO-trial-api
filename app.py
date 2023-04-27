@@ -12,6 +12,7 @@ from db import db
 from models import * #importo los modelos para que los use sqlalchemy
 from resources.users import blp as UserBlp
 from resources.rooms import blp as RoomBlp
+from resources.messages import blp as MessagesBlp
 
 from dotenv import load_dotenv
 
@@ -61,6 +62,7 @@ def create_app(db_url=None):
     API_PREFIX='/v1'
     api.register_blueprint(UserBlp,url_prefix=API_PREFIX)
     api.register_blueprint(RoomBlp,url_prefix=API_PREFIX)
+    api.register_blueprint(MessagesBlp,url_prefix=API_PREFIX)
     
     #Render home page
     @app.route('/')

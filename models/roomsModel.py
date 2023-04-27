@@ -24,6 +24,8 @@ class RoomModel(db.Model):
         backref='rooms',
         lazy = 'dynamic')
     
+    messages:list
+    
 
     def addUser(self,user:UserModel):
         '''add user to room

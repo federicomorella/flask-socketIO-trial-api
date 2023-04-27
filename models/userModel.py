@@ -20,6 +20,7 @@ class UserModel(db.Model):
     username=Column(types.String(80),nullable=False,unique=True)
     password=Column(types.String(129),nullable=False)    
     email=Column(types.String,unique=True)
+    
     rooms:list
 
     
@@ -29,6 +30,8 @@ class UserModel(db.Model):
         secondaryjoin = id==User_Contact.contact_id,
         backref='followers',
         lazy = 'dynamic')
+    
+    messages:list
     
     
     

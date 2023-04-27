@@ -1,14 +1,14 @@
 _type: export
 __export_format: 4
-__export_date: 2023-04-24T22:30:17.565Z
+__export_date: 2023-04-27T00:28:02.346Z
 __export_source: insomnia.desktop.app:v2022.7.5
 resources:
-  - _id: req_37074ed18e3c42c481666f036891792e
-    parentId: fld_6d7368eabe594937ab6148818b85db1d
-    modified: 1682375388427
-    created: 1682375354246
-    url: "{{ _.url }}/rooms/1"
-    name: get room data by id
+  - _id: req_f42384863503481aaa440d576eedeaad
+    parentId: fld_810f636069ef465399ffa9c267c8d84d
+    modified: 1682549736279
+    created: 1682549717538
+    url: "{{ _.url }}/rooms/19/messages"
+    name: New Request
     description: ""
     method: GET
     body: {}
@@ -17,7 +17,78 @@ resources:
     authentication:
       type: bearer
       token: "{{ _.access_token }}"
-    metaSortKey: -1682375354246
+    metaSortKey: -1682549717538
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_810f636069ef465399ffa9c267c8d84d
+    parentId: wrk_50dcf68163ff488fba1b019beef3d74c
+    modified: 1682549249811
+    created: 1682549249811
+    name: Messages
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1682549249811
+    _type: request_group
+  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
+    parentId: null
+    modified: 1679692678208
+    created: 1679692678208
+    name: TravelAgent.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_e40771a86ae745e7b7bbd09377354ee2
+    parentId: fld_810f636069ef465399ffa9c267c8d84d
+    modified: 1682555225909
+    created: 1682549251104
+    url: "{{ _.url }}/rooms/19/messages"
+    name: create message
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"message":"mensaje de fede"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682549251104
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3a9fcf6a2baf4ddc855163ad1ad7a366
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682548374465
+    created: 1682547840128
+    url: "{{ _.url }}/rooms/20"
+    name: remove current user from room
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682547840128
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -36,14 +107,82 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1682369367631
     _type: request_group
-  - _id: wrk_50dcf68163ff488fba1b019beef3d74c
-    parentId: null
-    modified: 1679692678208
-    created: 1679692678208
-    name: TravelAgent.yaml
+  - _id: req_d5fc07af453b4976a05ed2030a769e72
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682548544161
+    created: 1682548512666
+    url: "{{ _.url }}/rooms/19"
+    name: get room information
     description: ""
-    scope: design
-    _type: workspace
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682464869813
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_876c72dc0848478d8da523fe5a1f5762
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682548415642
+    created: 1682381899498
+    url: "{{ _.url }}/rooms/19/contacts"
+    name: add user to room
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username":"fede"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682381899498
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_37074ed18e3c42c481666f036891792e
+    parentId: fld_6d7368eabe594937ab6148818b85db1d
+    modified: 1682548501136
+    created: 1682375354246
+    url: "{{ _.url }}/rooms/19/contacts"
+    name: get room contacts by id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.access_token }}"
+    metaSortKey: -1682375354246
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_ffcdeb0031d44fbe8761685a8677ab79
     parentId: fld_6d7368eabe594937ab6148818b85db1d
     modified: 1682372837188
@@ -69,7 +208,7 @@ resources:
     _type: request
   - _id: req_a835f5e1aa214623b188e4866007b04c
     parentId: fld_6d7368eabe594937ab6148818b85db1d
-    modified: 1682373392108
+    modified: 1682381591971
     created: 1682369368825
     url: "{{ _.url }}/rooms"
     name: New room
@@ -79,7 +218,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"name":"sala 2"
+        	"name":"sala 2 jesi"
         }
     parameters: []
     headers:
@@ -233,7 +372,7 @@ resources:
     _type: request_group
   - _id: req_0960a45a6c684233b3fd8d7f689c0df7
     parentId: fld_e07efbc54c574ddb9ebd1a476a9dcb54
-    modified: 1682372854381
+    modified: 1682555191105
     created: 1679692705601
     url: "{{ _.url }}/login"
     name: login
@@ -371,9 +510,9 @@ resources:
     _type: cookie_jar
   - _id: spc_532742db41124d7593548daffc2a66a6
     parentId: wrk_50dcf68163ff488fba1b019beef3d74c
-    modified: 1679692678208
+    modified: 1682548687488
     created: 1679692678208
-    fileName: TravelAgent.yaml
+    fileName: Flask-SocketIO-Chat
     contents: ""
     contentType: yaml
     _type: api_spec
