@@ -27,7 +27,7 @@ def create_app(db_url=None):
             template_folder='static')
     
     CORS(app)
-    app.config['SQLALCHEMY_ECHO'] = True #log sqlalchemy queries
+    app.config['SQLALCHEMY_ECHO'] = False #log sqlalchemy queries
     app.config["PROPAGATE_EXCEPTIONS"]=True
     app.config["API_TITLE"]="Flask-SocketIO API"
     app.config["API_VERSION"]="v1"

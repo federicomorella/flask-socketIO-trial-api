@@ -19,12 +19,13 @@ blp=Blueprint("rooms",__name__,description="operations on rooms")
 @blp.route('/rooms')
 class Rooms(MethodView):
     
-    @blp.response(200,UserSchema)
+    @blp.response(200,RoomSchema(many=True))
     @jwt_required()
     def get(self):
         '''return all current user's rooms {"rooms":[]}'''
-        user:UserModel=db.get_or_404(UserModel,get_jwt_identity())   
-        return {'rooms':user.rooms}
+        user:UserModel=db.get_or_404(UserModel,get_jwt_identity())  
+        db.session.commit()
+        return user.rooms
     
     
     
@@ -52,11 +53,12 @@ class Rooms(MethodView):
 @blp.route('/rooms/<int:room_id>')
 class room_operation(MethodView):
     @jwt_required()
-    @blp.response(200,PlainRoomSchema)    
+    @blp.response(200,RoomSchema)    
     def get(self,room_id):
-        '''return room details without users'''
+        '''return room details'''
         room=db.get_or_404(RoomModel,room_id)
         return room
+    
     
     @jwt_required()
     def delete(self,room_id):

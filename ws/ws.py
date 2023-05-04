@@ -1,28 +1,46 @@
 from flask_socketio import SocketIO,emit, ConnectionRefusedError,join_room,leave_room,send
 from flask_jwt_extended import decode_token
 
-from flask import request
+from db import db
+from sqlalchemy.exc import SQLAlchemyError,IntegrityError
+from models import UserModel
 
+from flask import request
+import json
+   
+socket_clients=dict()
 
 def socketIO_init(app):
-    socketio=SocketIO(app,cors_allowed_origins='*',logger=True)    
+    socketio:SocketIO=SocketIO(app,cors_allowed_origins='*',logger=True)    
     print('socketIO initialized')
-    
+ 
             
     @socketio.on('connect')
     def test_connect(auth):
         print('WS on connection----------------')
-        print('request',request.sid)
-        print(auth)
-        if decode_token(auth["token"]):
+        print('SID:',request.sid)
+        decoded_token=decode_token(auth["token"])
+        if decoded_token:
             emit('my response', {'data': 'Connected'})
-            print('WS Client connected',auth)
+            
+            #Add client to the dictionary
+            user=db.get_or_404(UserModel,decoded_token.get('sub'))
+            socket_clients[user.username]=request.sid
+            print('Clients: ',socket_clients)
         else:
             raise ConnectionRefusedError('unauthorized!')
 
     @socketio.on('disconnect')
     def test_disconnect():
-        print('WS Client disconnected')
+        print('WS Client disconnecting-----------')
+        #remove client from the dictionary
+        SID=request.sid
+        client=[k for k,v in socket_clients.items() if v==SID]
+        print(client[0])
+        if client:
+            socket_clients.pop(client[0])
+        
+
     
     
         
