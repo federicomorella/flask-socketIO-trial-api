@@ -42,7 +42,7 @@ def create_app(db_url=None):
 
     #JWT
     app.config["JWT_SECRET_KEY"]=os.getenv("SECRET",'my_secret_key')
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"]=600
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"]=3600*24
     jwt=JWTManager(app)
 
     #SocketIO

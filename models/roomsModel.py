@@ -53,6 +53,8 @@ class RoomModel(db.Model):
             except:
                 return False
             
-
+    def __str__(self):
+        return f'Room {self.id}: { self.name}'
+    
         
         

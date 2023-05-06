@@ -25,8 +25,12 @@ def socketIO_init(app):
             
             #Add client to the dictionary
             user=db.get_or_404(UserModel,decoded_token.get('sub'))
-            socket_clients[user.username]=request.sid
+            socket_clients[user.username]=request.sid            
             print('Clients: ',socket_clients)
+            
+            #join rooms
+            _join_all_rooms(user)
+            
         else:
             raise ConnectionRefusedError('unauthorized!')
 
@@ -49,7 +53,7 @@ def socketIO_init(app):
         print('MyMessage----------------')
         print(request.sid)
         print('Received json: '+ str(data))
-        emit('server_message',data,to='1234',include_self=False)
+        emit('server_message',data,to=data.get('room'),include_self=False)
         
     
     @socketio.on('join')
@@ -69,8 +73,20 @@ def socketIO_init(app):
         username = data['username']
         room = data['room']
         leave_room(room)
-        emit('room_leave',username + ' has left the room.', to=room)
+        emit('room_leave',f'{username} has entered the room `{room.name}`', to=room)
         
+        
+    def _join_all_rooms(user:UserModel):
+        '''join user to all his rooms'''
+        for room in user.rooms:
+            join_room(room.id)
+            print(f'{user.username} entering room `{room.name}`')
+            socketio.emit('room_enter', f'{user.username} has entered the room `{room.name}`', to=room.id)
+        return
+    
+            
         
     return socketio
  
+ 
+    
